@@ -27,4 +27,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
     // Route::resource('users', 'Users')
     Route::resource('topics', 'Admin\AdminTopicsController');
+    Route::resource('questions', 'Admin\AdminQuestionsController');
 });
