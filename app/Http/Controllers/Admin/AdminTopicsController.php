@@ -40,7 +40,9 @@ class AdminTopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $topic = Topic::create($request->all());
+
+        return redirect('/admin/topics');
     }
 
     /**
