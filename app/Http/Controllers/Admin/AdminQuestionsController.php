@@ -71,9 +71,10 @@ class AdminQuestionsController extends Controller
      */
     public function edit($id)
     {
-        $topic = Question::findOrFail($id);
+        $question = Question::findOrFail($id);
+        $topics = Topic::all();
 
-        return view('admin.topics.edit', ['topic' => $topic]);
+        return view('admin.questions.edit', ['question' => $question, 'topics' => $topics]);
     }
 
     /**
