@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         @include('admin._nav')
         <div class="col-md-8">
-            @if(!empty($topic))
+            @if(!empty($question))
                 <form action="/admin/questions/{{ $question->id }}" method="POST">
                 <input type="hidden" name="_method" value="put">
                 @csrf()
@@ -20,6 +20,15 @@
                         @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
                         <div class="form-group">
@@ -37,7 +46,7 @@
                             <select class="form-control" id="topic" name="topic_id">
                                 <option></option>
                                 @foreach($topics as $topic)
-                                    <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                                    <option value="{{ $topic->id }}" {{ $topic->id === old('topic_id', $question->topic_id ?? '') ? "selected" : ""}}>{{ $topic->name }}</option>
                                 @endforeach
                             </select>
                             <!-- <input type="text" class="form-control" id="name" name="name" value="{{ old('topic', $topic->name ?? '') }}"> -->

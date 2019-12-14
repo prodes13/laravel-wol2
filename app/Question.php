@@ -13,4 +13,19 @@ class Question extends Model
         'topic_id',
         'answers'
     ];
+
+    /**
+     * Get the user's first name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getAnswersAttribute($json)
+    {
+        $arr = json_decode($json);
+        
+        $value = implode("\r\n", $arr);
+        // dd($json);
+        return $value;
+    }
 }

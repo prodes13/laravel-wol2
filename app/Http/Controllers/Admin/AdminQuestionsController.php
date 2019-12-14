@@ -86,11 +86,20 @@ class AdminQuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $topic = Question::findOrFail($id);
+        $this->validate($request, [
+            'topic_id' => 'required'
+        ]);
+        
+        $data = $request->all();
 
-        $topic->update($request->all());
+        $data['answers'] = explode("\r\n", $data['answers']);
+        $data['answers'] = json_encode($data['answers']);
 
-        return redirect()->back()->with('success', 'topic updated');
+        $question = Question::findOrFail($id);
+
+        $question->update($data);
+
+        return redirect()->back()->with('success', 'question updated');
     }
 
     /**
