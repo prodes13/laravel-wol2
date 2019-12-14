@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/data', 'StaticJsonDataController@get');
+Route::get('/static-data', 'StaticJsonDataController@get');
+Route::get('/data', 'DataController@get');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', function(){

@@ -28,4 +28,9 @@ class Question extends Model
         // dd($json);
         return $value;
     }
+
+    public function topic()
+    {
+        return $this->belongsTo(\App\Topic::class);
+    }
 }
