@@ -14,6 +14,14 @@ class Question extends Model
         'answers'
     ];
 
+    protected $appends = ['answers_json'];
+
+    public function getAnswersJsonAttribute($json)
+    {
+        $data = explode("\r\n", $this->answers);
+
+        return $data;
+    }
     /**
      * Get the user's first name.
      *
