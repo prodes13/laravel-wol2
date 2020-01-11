@@ -17,13 +17,10 @@ class AdminTokensController extends Controller
     public static function submitResults(Request $request) {
         $token = Token::create([
             'token' => $request->get('token'),
-            'results' => $request->get('answers')
+            'results' => json_encode($request->get('answers'))
         ]);
-            // $request->all());
-        // $tokens = Token::all();
-        dd($request->all());
 
-        return view('admin.tokens.all', ['tokens' => $tokens]);
+        return 1;
     }
 
     //
