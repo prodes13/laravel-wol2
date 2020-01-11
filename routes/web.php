@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/static-data', 'StaticJsonDataController@get');
 Route::get('/data', 'DataController@get');
+Route::post('/send-results', 'Admin\AdminTokensController@submitResults');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', function(){
@@ -29,4 +30,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     // Route::resource('users', 'Users')
     Route::resource('topics', 'Admin\AdminTopicsController');
     Route::resource('questions', 'Admin\AdminQuestionsController');
+    Route::resource('tokens', 'Admin\AdminTokensController');
 });
