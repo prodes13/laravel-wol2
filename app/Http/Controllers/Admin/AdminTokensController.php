@@ -15,7 +15,11 @@ class AdminTokensController extends Controller
         return view('admin.tokens.all', ['tokens' => $tokens]);
     }
     public static function submitResults(Request $request) {
-        $token = Token::create($request->all());
+        $token = Token::create([
+            'token' => $request->get('token'),
+            'results' => $request->get('answers')
+        ]);
+            // $request->all());
         // $tokens = Token::all();
         dd($request->all());
 
